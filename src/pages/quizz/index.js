@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import getQuestions from "../../api/questions";
 import Spinner from "../../components/spinner";
+import QuizzComponent from "../../components/quizz";
 
 const isQuizzFinished = (quizzState) => {
   const lastRound = quizzState[quizzState.length - 1];
@@ -14,19 +15,27 @@ export default function Quizz() {
     JSON.parse(localStorage.getItem("quizzState"))
   );
   const navigate = useNavigate();
-  const [questions, setQuestions] = useState();
+  const [quizzData, setQuizzData] = useState();
 
   useEffect(() => {
     if (!roundState || isQuizzFinished(roundState)) navigate("/");
-  }, [roundState]);
+  }, [roundState, navigate]);
 
-  useEffect(async () => {
-    const data = await getQuestions();
+  useEffect(() => {
+    (async () => {
+      const data = await getQuestions();
 
-    setQuestions(data);
+      setQuizzData(data);
+    })();
   }, []);
 
-  if (!questions) return <Spinner />;
+  if (!quizzData) return <Spinner />;
 
-  return <h1>Quizz page</h1>;
+  return (
+    <div>
+      <h1>Quizz page</h1>
+
+      <QuizzComponent data={quizzData} />
+    </div>
+  );
 }
