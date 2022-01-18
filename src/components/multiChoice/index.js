@@ -26,7 +26,7 @@ export default function MultiChoice({ question, answer, handleAnswer }) {
     }
 
     setAttemptCount((prev) => prev + 1);
-    handleAnswer();
+    handleAnswer(isCorrect);
   };
 
   return (
