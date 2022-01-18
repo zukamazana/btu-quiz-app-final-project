@@ -66,3 +66,42 @@
     transform: rotate(360deg);
   }
 }
+
+.progressBar {
+  position: absolute;
+  background-color: #e9e8e6;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 25px;
+}
+
+.progressBar p {
+  margin: 0;
+  z-index: 10;
+  position: relative;
+}
+
+.progressBar .progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  background-color: #dcdcff;
+  transition: width 0.5s;
+  animation: background-colors 5s infinite;
+}
+
+@keyframes background-colors {
+  0% {
+    background-color: #dcdcff;
+  }
+
+  50% {
+    background-color: #ebf8af;
+  }
+
+  100% {
+    background-color: #aff8cb;
+  }
+}
