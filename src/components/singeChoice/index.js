@@ -15,7 +15,7 @@ export default function SingleChoice({ question, answer, handleAnswer }) {
       userSelectedEl.style.background = "red";
     }
     setAttemptCount((prev) => prev + 1);
-    handleAnswer();
+    handleAnswer(isCorrect);
   };
 
   return (

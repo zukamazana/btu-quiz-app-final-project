@@ -105,3 +105,38 @@
     background-color: #aff8cb;
   }
 }
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid gray;
+  margin-top: 10px;
+}
+
+.contextMenuWrapper {
+  left: 0;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+
+.contextMenu {
+  position: absolute;
+  border: 1px solid rgb(150, 150, 150);
+  border-radius: 5px;
+  background-color: rgb(94, 94, 94);
+  width: 90px;
+  padding: 4px;
+  margin: 4px;
+}
+
+.menuItems button {
+  color: white;
+  width: 100%;
+  border: none;
+  text-align: start;
+  background: none;
+  padding: 5px;
+}
