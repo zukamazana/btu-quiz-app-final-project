@@ -1,27 +1,30 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import HistoryItem from "../../components/historyItem";
 
 export default function Home() {
   const navigate = useNavigate();
+  const [history, setHistory] = useState(() =>
+    JSON.parse(localStorage.getItem("quizzData") || "[]")
+  );
 
-  const handleQuizzStart = () => {
-    const startDate = new Date();
-    const quizzState = localStorage.getItem("quizzState");
-
-    const data = JSON.stringify(
-      quizzState
-        ? [...quizzState, { startDate, isFinished: false }]
-        : [{ startDate, isFinished: false }]
-    );
-
-    localStorage.setItem("quizzState", data);
-
-    navigate("quizz");
+  const handleItemDelete = (id) => {
+    setHistory((prev) => prev.filter((_, i) => i != id));
   };
+
+  useEffect(() => {
+    localStorage.setItem("quizzData", JSON.stringify(history));
+  }, [history]);
 
   return (
     <>
       <h1>Home page</h1>
-      <button onClick={handleQuizzStart}>start quizz</button>
+      <button onClick={() => navigate("quizz")}>start quizz</button>
+      <button onClick={() => navigate("/history")}>view attempt history</button>
+
+      {history[0] && (
+        <HistoryItem data={history[0]} i={0} onItemDelete={handleItemDelete} />
+      )}
     </>
   );
 }

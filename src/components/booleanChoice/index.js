@@ -20,7 +20,7 @@ export default function BooleanChoice({ answer, handleAnswer }) {
     }
 
     setAttemptCount((prev) => prev + 1);
-    handleAnswer(choice);
+    handleAnswer(isCorrect);
   };
 
   return (

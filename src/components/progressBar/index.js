@@ -1,5 +1,4 @@
 export default function ProgressBar({ current, total }) {
-  console.log(current, total);
   return (
     <div className="progressBar">
       <div
